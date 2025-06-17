@@ -35,6 +35,12 @@
                   <br>
                   🕒 Date de l'évènement : <%= french_date_format(@event) %>
                 </p>
+                                <% if current_user == @event.user %>
+                  <div class="d-flex justify-content-start align-items-center mb-4" style="gap: 10px;">
+                    <%= link_to "✏️ Modifier cet evenement", edit_event_path(@event), class: "btn btn-warning" %>
+                    <%= button_to "🗑️ Supprimer", event_path(@event), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir le supprimer  ?" }, class: "btn btn-danger" %>
+                  </div>
+                <% end %>
             </div>
         </div>
     </div>

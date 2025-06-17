@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    @events =Event.all
+    @events =Event.includes(:user).order(start_date: :asc)
   end
 
   def show
@@ -24,12 +24,26 @@ class EventsController < ApplicationController
   end
 
   def edit
+    @event = Event.find(params[:id])
   end
 
   def update
+    @event = Event.find(params[:id])
+
+    if @event.update(event_params)
+      flash[:notice] = "Evenement Mis à Jour!"
+      redirect_to event_path(@event)
+    else
+      flash.now[:alert] = "Evenement non ajouté."
+      render :edit
+    end
   end
 
   def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    flash[:notice] = "Evenement Supprimé!"
+    redirect_to events_path
   end
 
   private
