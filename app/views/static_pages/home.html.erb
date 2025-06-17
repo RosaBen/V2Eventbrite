@@ -13,9 +13,9 @@
         </ol>
         <%= link_to "Voir tous les evenments", events_path, class: "btn btn-primary mt-3" %>
     </div>
-
-    <h2 class="mb-4 text-center text-secondary">Evenements de la semaine 💣</h2>
-
+        <% events, message = fetch_nearest_events %>
+    <% if events.any? %>
+    <h2 class="mb-4 text-center text-secondary"><%= message %></h2>
      <div class="text-center my-3">
   <button type="button" class="btn btn-info" disabled style="cursor: default;">
     💡 Cliquez sur un post-it pour le lire. Utilisez ↑ ↓ pour naviguer entre eux.
@@ -27,8 +27,14 @@
       <img src="https://picsum.photos/300" alt="Image gauche" class="img-fluid rounded shadow" >
     </div>
     <div class="position-relative" style="width: 200px; min-height: 400px;">
-      <%= render_post_its %>
+      <%= render_post_its(events) %>
     </div>
-
+    </div>
   </div>
 </div>
+<% else %>
+  <div class="alert alert-warning text-center mt-5">
+    Aucun événement cette semaine ni la semaine prochaine.<br>
+    <%= link_to "Voir tous les événements à venir", events_path, class: "btn btn-primary mt-3" %>
+  </div>
+<% end %>
