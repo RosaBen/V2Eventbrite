@@ -1,0 +1,23 @@
+<div>
+  <% @events.each do |event| %>
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title text-dark"><%=event.title%></h5>
+            <p class="card-text"><span class=" text-primary">Description:</span> <%= truncate(event.description, length: 60, separator: '...') %></p>
+            <hr>
+<br>
+            <p class="text-muted mb-1">
+           🧑 Evenement organisé par 
+<% if event.user %>
+  <strong><%= event.user.first_name %> <%= event.user.last_name %></strong>
+<% else %>
+  <strong>John Doe</strong>
+<% end %>
+              <br>
+              🕒 date de l'evenement : <%= french_date_format(event) %>
+            </p>
+            <%= link_to "Lire plus", event_path(event), class: "btn btn-outline-primary mt-2" %>
+        </div>
+    </div>
+  <% end %>
+</div>

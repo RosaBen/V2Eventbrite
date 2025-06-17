@@ -4,6 +4,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @event = Event.find(params[:id])
   end
 
   def new
@@ -20,5 +21,13 @@ class EventsController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+  # puts "PARAMS ----------"
+  # puts params.inspect
+  # puts "-----------------"
+  def gossip_params
+    params.require(:gossip).permit(:title, :content, tag_ids: [])
   end
 end
