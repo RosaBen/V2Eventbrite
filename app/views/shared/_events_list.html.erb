@@ -9,12 +9,21 @@
             <p class="text-muted mb-1">
            🧑 Evenement organisé par 
 <% if event.user %>
-  <strong><%= event.user.first_name %> <%= event.user.last_name %></strong>
+  <strong><%= event.user.fullname %></strong>
 <% else %>
-  <strong>John Doe</strong>
+  <strong>Inconnu</strong>
 <% end %>
               <br>
               🕒 date de l'evenement : <%= french_date_format(event) %>
+              <br>
+🏠 Lieu : <strong>
+  <% if event.location.present? %>
+    <%= event.location %>
+  <% else %>
+    TBC
+  <% end %>
+</strong>
+
             </p>
             <%= link_to "Lire plus", event_path(event), class: "btn btn-outline-primary mt-2" %>
         </div>

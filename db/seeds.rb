@@ -42,7 +42,7 @@ Event.create!(
     title: Faker::Hipster.sentence(word_count: 2),
     description: Faker::Hipster.paragraphs(number: 2).join("\n"),
     start_date: start_datetime,
-    location: Faker::Address.city,
+    location: Faker::Address.street_address,
     price: rand(1..1000),
     user: User.all.sample,
     duration: [ 30, 60, 90, 120 ].sample

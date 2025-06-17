@@ -28,6 +28,6 @@ class EventsController < ApplicationController
   # puts params.inspect
   # puts "-----------------"
   def gossip_params
-    params.require(:gossip).permit(:title, :content, tag_ids: [])
+    params.require(:event).permit(:title, :description, :start_date, :duration, :price, :location)
   end
 end

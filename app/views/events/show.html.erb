@@ -1,0 +1,45 @@
+<div class="card mb-5 shadow-sm">
+    <div class="row g-0">
+        <div class="col-md-4 d-flex align-items-center justify-content-center p-4">
+<%= image_tag 'default_avatar.png',
+  alt: @event.user&.fullname || "Inconnu",
+  class: "img-fluid rounded-circle border border-2 border-primary",
+  style: "max-width: 150px;" %>
+
+
+
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h2 class="card-title text-primary mb-3"><%= @event.title %></h2>
+                <div class="speech-bubble bg-light p-4 mb-3">
+                    <%= simple_format(@event.description) %>
+                </div>
+                <br>
+                <p class="text-muted small mb-3">
+                  🧑 Evènement ajouté Par 
+<% if @event.user %>
+  <%= link_to @event.user.fullname, user_path(@event.user), class: "fw-bold text-decoration-none" %>
+<% else %>
+  <strong>Inconnu</strong>
+<% end %>
+                  <br>
+🏠 Lieu : <strong>
+  <% if @event.location.present? %>
+    <%= @event.location %>
+  <% else %>
+    TBC
+  <% end %>
+</strong>
+
+                  <br>
+                  🕒 Date de l'évènement : <%= french_date_format(@event) %>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-flex justify-content-around align-items-center mb-4" style="gap: 10px;">
+  <%= link_to "← Retour à la liste", events_path, class: "btn btn-outline-secondary" %>
+  <%# <%= link_to "📝 Créer un nouveau event", new_event_path, class: "btn btn-primary " %> 
+</div>
