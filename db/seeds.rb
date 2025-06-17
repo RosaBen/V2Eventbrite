@@ -34,10 +34,14 @@ Event.create!(
   duration: 90
 )
 10.times do
+  date = Date.today + rand(1..90)
+  hour = rand(8..20)
+  minute = [ 0, 15, 30, 45 ].sample
+  start_datetime = DateTime.new(date.year, date.month, date.day, hour, minute)
   Event.create!(
     title: Faker::Hipster.sentence(word_count: 2),
     description: Faker::Hipster.paragraphs(number: 2).join("\n"),
-    start_date: DateTime.now + rand(1..30).days,
+    start_date: start_datetime,
     location: Faker::Address.city,
     price: rand(1..1000),
     user: User.all.sample,
