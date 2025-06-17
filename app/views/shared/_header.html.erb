@@ -8,10 +8,11 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
 
-                        <%# <% if logged_in? %>
+                        <% if user_signed_in? %>
+
                         <li class="nav-item">
                             <%= button_to "Se déconnecter",
-                            logout_path, 
+                            destroy_user_session_path, 
         method: :delete, data: { confirm: "Es-tu sûr(e) ?" }, 
         class: "btn btn-outline-danger" %>
                         </li>
@@ -19,18 +20,18 @@
                         <li class="nav-item"><%= link_to "Liste des evenements", 
                         events_path, 
                         class: "nav-link text-white" %></li>
-                        <%# <% else %>
+                        <% else %>
                         <li class="nav-item">
                             <%= link_to "Se connecter", 
-                            login_path,
+                            new_user_session_path,
                              class: "nav-link text-white" %>
                         </li>
                         <li class="nav-item">
                             <%= link_to "S'inscrire", 
-                            signup_path, 
+                            new_user_registration_path, 
                             class: "nav-link text-white" %>
                         </li>
-                        <%# <% end %>
+                        <% end %>
                         <li class="nav-item"><%= link_to "Accueil", root_path, class: "nav-link text-white" %></li>
                     </ul>
                 </div>

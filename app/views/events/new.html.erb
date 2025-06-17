@@ -1,11 +1,2 @@
 <%= render 'shared/form_event', event: @event %>
-<% if @event.errors.any? %>
-  <div class="alert alert-danger">
-    <h4>Erreur(s) lors de la création :</h4>
-    <ul>
-      <% @event.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+

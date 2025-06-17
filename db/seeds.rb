@@ -9,7 +9,7 @@ ActiveRecord::Base.connection.reset_pk_sequence!('users')
 ActiveRecord::Base.connection.reset_pk_sequence!('events')
 
 puts "👤 Ajout des utilisateurs"
-User.create!(first_name: "rosa", last_name: "rosa", email: "test@test.com", description: Faker::Hipster.paragraphs(number: 2), encrypted_password: "password")
+User.create!(first_name: "rosa", last_name: "rosa", email: "test@test.com", description: Faker::Hipster.paragraphs(number: 2), password: "password", password_confirmation: "password")
 10.times do |i|
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
@@ -18,7 +18,8 @@ User.create!(first_name: "rosa", last_name: "rosa", email: "test@test.com", desc
     first_name: first_name,
     last_name: last_name,
     email: "#{first_name}_#{last_name}#{i}@yopmail.com",
-    encrypted_password: password,
+    password: password,
+    password_confirmation: password,
     description: Faker::Hipster.paragraphs(number: 2).join("\n"),
   )
 end

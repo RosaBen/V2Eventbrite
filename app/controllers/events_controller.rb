@@ -12,12 +12,14 @@ class EventsController < ApplicationController
   end
 
   def create
+    puts "Current user: #{current_user.inspect}"
     @event = current_user.events.build(event_params)
 
     if @event.save
       flash[:notice] = "Evenement Créé!"
       redirect_to event_path(@event)
     else
+      puts @event.errors.full_messages
       flash.now[:alert] = "Failed to create event."
       render :new
     end
