@@ -11,7 +11,16 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
-  def Create
+  def create
+    @event = current_user.events.build(event_params)
+
+    if @event.save
+      flash[:notice] = "Evenement Créé!"
+      redirect_to event_path(@event)
+    else
+      flash.now[:alert] = "Failed to create event."
+      render :new
+    end
   end
 
   def edit
@@ -27,7 +36,7 @@ class EventsController < ApplicationController
   # puts "PARAMS ----------"
   # puts params.inspect
   # puts "-----------------"
-  def gossip_params
+  def event_params
     params.require(:event).permit(:title, :description, :start_date, :duration, :price, :location)
   end
 end

@@ -1,0 +1,37 @@
+<%= form_with model: @event, local: true do |form| %>
+    
+    <div class="mb-3">
+      <%= form.label :title, "Titre" %>
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
+    
+    <div class="mb-3">
+      <%= form.label :description, "Description" %>
+      <%= form.text_area :description, class: "form-control" %>
+    </div>
+      <%= hidden_field_tag :fullname, @event.user&.fullname %>
+    <div class="mb-3">
+      <%= form.label :location, "Lieu" %>
+      <%= form.text_field :location, class: "form-control" %>
+    </div>
+<div class="mb-3">
+  <%= form.label :start_date, "Date et heure de l'évènement" %>
+  <%= form.datetime_local_field :start_date, class: "form-control", value: Time.current.change(min: 0) + 1.day %>
+</div>
+
+
+
+    <div class="mb-3">
+      <%= form.label :price, "Tarif" %>
+      <%= form.number_field :price, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :duration, "Durée" %>
+      <%= form.number_field :duration, class: "form-control", placeholder: "Durée en minutes" %>
+    </div>
+     
+    
+    <%= form.submit @event.new_record? ? "Créer event" : "Modifier event", class: "btn btn-primary" %>
+    
+  </div>
+<% end %>
