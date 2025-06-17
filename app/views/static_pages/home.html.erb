@@ -1,0 +1,34 @@
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-primary">Bienvenue sur notre page Evenmentiel de Stains</h1>
+        <p class="lead text-muted">Ici, vous trouverez tous les evenements de notre ville Stains 🕵️‍♀️</p>
+    </div>
+
+    <div class="bg-light p-4 rounded shadow mb-5">
+        <h2 class="h4 text-secondary">Comment ça marche ?</h2>
+        <ol class="text-muted">
+            <li>Inscris-toi ou connecte-toi pour participer.</li> 
+            <li>Publie un événement que tu organises ou que tu souhaites partager.</li>
+            <li>Découvre les événements des autres et participe à ceux qui t'intéressent !</li>
+        </ol>
+        <%= link_to "Voir tous les evenments", events_path, class: "btn btn-primary mt-3" %>
+    </div>
+
+    <h2 class="mb-4 text-center text-secondary">Evenements de la semaine 💣</h2>
+
+     <div class="text-center my-3">
+  <button type="button" class="btn btn-info" disabled style="cursor: default;">
+    💡 Cliquez sur un post-it pour le lire. Utilisez ↑ ↓ pour naviguer entre eux.
+  </button>
+<div class="container my-4">
+  <div class="d-flex flex-wrap justify-content-center align-items-start gap-4">
+
+    <div class="flex-shrink-0">
+      <img src="https://picsum.photos/300" alt="Image gauche" class="img-fluid rounded shadow" >
+    </div>
+    <div class="position-relative" style="width: 200px; min-height: 400px;">
+      <%= render_post_its %>
+    </div>
+
+  </div>
+</div>
