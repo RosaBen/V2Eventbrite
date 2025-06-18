@@ -34,6 +34,10 @@
 
                   <br>
                   🕒 Date de l'évènement : <%= french_date_format(@event) %>
+                  <br>
+💰 Tarif : <%= @event.price %> €
+<br>
+⌛ Durée : <%= @event.duration %> minutes
                 </p>
                                 <% if current_user == @event.user %>
                   <div class="d-flex justify-content-start align-items-center mb-4" style="gap: 10px;">

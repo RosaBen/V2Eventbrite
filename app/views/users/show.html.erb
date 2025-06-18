@@ -1,0 +1,38 @@
+<%# <p>Avatar attaché ? : <%= @user.avatar.attached? %>
+
+<%# </p> %>
+<%# <p>Nom fichier avatar : <%= @user.avatar.blob.filename if @user.avatar.attached? %>
+<%# </p> %>
+
+
+<div class="container mt-4">
+  <div class="card mx-auto" style="max-width: 600px;">
+    <div class="mb-3 text-center">
+<%= image_tag 'default_avatar.png',
+  alt: @user.fullname || "Inconnu",
+  class: "img-fluid rounded-circle border border-2 border-primary",
+  style: "max-width: 150px;" %>
+
+    </div>
+
+    <div class="card-header d-flex justify-content-between align-items-center bg-primary text-white">
+      <h2 class="mb-0 mx-auto"><%= @user.fullname %></h2>
+      <%= link_to '⬅️ Retour aux events', events_path, class: 'btn btn-light btn-sm ms-auto' %>
+    </div>
+
+    <div class="card-body text-center">
+
+      <p><strong>Email :</strong> <%= @user.email %></p>
+      <p><strong>Bio :</strong> <%= @user.description.presence || "Aucune bio disponible" %></p>
+
+      <hr>
+      <h4 class="mb-3">Ses events</h4>
+      <% if @user.events.any? %>
+        <%= render 'shared/events_list', events: @user.events %>
+      <% else %>
+        <p class="text-muted">Pas d'evenements crées</p>
+      <% end %>
+
+    </div>
+  </div>
+</div>

@@ -3,13 +3,13 @@
     <div class="card mb-4 shadow-sm">
         <div class="card-body">
             <h5 class="card-title text-dark"><%=event.title%></h5>
-            <p class="card-text"><span class=" text-primary">Description:</span> <%= truncate(event.description, length: 60, separator: '...') %></p>
+            <p class="card-text"><span class=" text-primary">Description:</span> <%= truncate(event.description, length: 20, separator: '...') %></p>
             <hr>
 <br>
             <p class="text-muted mb-1">
            🧑 Evenement organisé par 
 <% if event.user %>
-  <strong><%= event.user.fullname %></strong>
+  <%= link_to event.user.fullname, user_path(event.user), class: "fw-bold text-decoration-none" %>
 <% else %>
   <strong>Inconnu</strong>
 <% end %>
@@ -23,7 +23,10 @@
     TBC
   <% end %>
 </strong>
-
+<br>
+💰 Tarif : <%= event.price %> €
+<br>
+⌛ Durée : <%= event.duration %> minutes
             </p>
             <%= link_to "Lire plus", event_path(event), class: "btn btn-outline-primary mt-2" %>
         </div>
