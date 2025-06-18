@@ -7,14 +7,15 @@
             <hr>
 <br>
             <p class="text-muted mb-1">
-           🧑 Evenement organisé par 
+           🧑 Evenement créé par <strong>
 <% if event.user %>
-  <%= link_to event.user.fullname, user_path(event.user), class: "fw-bold text-decoration-none" %>
+  <%= event.user.fullname %>
 <% else %>
-  <strong>Inconnu</strong>
+  Inconnu
 <% end %>
+</strong>
               <br>
-              🕒 date de l'evenement : <%= french_date_format(event) %>
+              🕒 date de l'evenement : <strong><%= french_date_format(event) %></strong>
               <br>
 🏠 Lieu : <strong>
   <% if event.location.present? %>
@@ -24,9 +25,9 @@
   <% end %>
 </strong>
 <br>
-💰 Tarif : <%= event.price %> €
+💰 Tarif : <strong><%= event.price %> €</strong>
 <br>
-⌛ Durée : <%= event.duration %> minutes
+⌛ Durée : <strong><%= min_to_hour(event.duration)  %></strong>
             </p>
             <%= link_to "Lire plus", event_path(event), class: "btn btn-outline-primary mt-2" %>
         </div>

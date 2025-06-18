@@ -26,7 +26,7 @@
       <p><strong>Bio :</strong> <%= @user.description.presence || "Aucune bio disponible" %></p>
 
       <hr>
-      <h4 class="mb-3">Ses events</h4>
+      <h4 class="mb-3">mes events</h4>
       <% if @user.events.any? %>
         <%= render 'shared/events_list', events: @user.events %>
       <% else %>

@@ -12,7 +12,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    puts "Current user: #{current_user.inspect}"
+    # puts "Current user: #{current_user.inspect}"
     @event = current_user.events.build(event_params)
 
     if @event.save
