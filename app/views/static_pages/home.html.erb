@@ -1,18 +1,20 @@
 <div class="container my-5">
-    <div class="text-center mb-5">
-        <h1 class="display-4 fw-bold text-primary">Bienvenue sur notre page Evenmentiel de Stains</h1>
-        <p class="lead text-muted">Ici, vous trouverez tous les evenements de notre ville Stains 🕵️‍♀️</p>
+  <div class="p-5 mb-4 bg-light rounded-3 shadow">
+    <div class="container-fluid py-5 text-center">
+      <h1 class="display-4 fw-bold text-primary">Bienvenue sur notre page Evenmentiel de Stains</h1>
+      <p class="lead text-muted">Ici, vous trouverez tous les evenements de notre ville Stains 🕵️‍♀️</p>
+      <hr class="my-4">
+      <h2 class="h4 text-secondary">Comment ça marche ?</h2>
+      <ol class="text-muted text-start mx-auto" style="max-width: 600px;">
+        <li>Inscris-toi ou connecte-toi pour participer.</li> 
+        <li>Publie un événement que tu organises ou que tu souhaites partager.</li>
+        <li>Découvre les événements des autres et participe à ceux qui t'intéressent !</li>
+      </ol>
+      <%= link_to "Voir tous les evenments", events_path, class: "btn btn-primary mt-3" %>
     </div>
+  </div>
+</div>
 
-    <div class="bg-light p-4 rounded shadow mb-5">
-        <h2 class="h4 text-secondary">Comment ça marche ?</h2>
-        <ol class="text-muted">
-            <li>Inscris-toi ou connecte-toi pour participer.</li> 
-            <li>Publie un événement que tu organises ou que tu souhaites partager.</li>
-            <li>Découvre les événements des autres et participe à ceux qui t'intéressent !</li>
-        </ol>
-        <%= link_to "Voir tous les evenments", events_path, class: "btn btn-primary mt-3" %>
-    </div>
         <% events, message = fetch_nearest_events %>
     <% if events.any? %>
     <h2 class="mb-4 text-center text-secondary"><%= message %></h2>
