@@ -1,11 +1,28 @@
-<h2>Sign up</h2>
+<div class="container mt-5">
+<h2 class="mb-4 text-center">🧑‍💻 Créer un nouvel utilisateur</h2>
+<%= render "devise/shared/error_messages", resource: resource %>
+  <%= render "devise/shared/user_error" %>
+  <div class="card shadow mb-4">
+    <div class="card-header bg-success text-white text-center">
+      <h4>📝 Informations utilisateur</h4>
+    </div>
+    <div class="card-body">
+      <% resource ||= User.new %>
+      <% resource_name ||= :user %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/form_user", f: f %>
+        <%= render "devise/shared/password", f: f %>
 
-  <%= render "devise/shared/form_user", resource: resource %>
-
-  <%= render "devise/shared/password", resource: resource %>
-<% end %>
+        <div class="d-flex justify-content-end mt-4">
+          <%= f.submit "✅ Créer l'utilisateur", class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="text-center mt-3">
+    <%= link_to "⬅️ Retour à l'accueil", root_path, class: "btn btn-outline-secondary" %>
+  </div>
+</div>
 
 <%= render "devise/shared/links" %>
