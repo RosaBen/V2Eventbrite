@@ -1,0 +1,19 @@
+<div class="mb-3">
+  <%= f.label :first_name, class: "form-label" %>
+  <%= f.text_field :first_name, class: "form-control", autocomplete: "first-name" %>
+</div>
+
+<div class="mb-3">
+  <%= f.label :last_name, class: "form-label" %>
+  <%= f.text_field :last_name, class: "form-control", autocomplete: "last-name" %>
+</div>
+
+<div class="mb-3">
+  <%= f.label :description, class: "form-label" %>
+  <%= f.text_area :description, class: "form-control", rows: 3, autocomplete: "description" %>
+</div>
+
+<div class="mb-3">
+  <%= f.label :email, class: "form-label" %>
+  <%= f.email_field :email, class: "form-control", autocomplete: "email" %>
+</div>

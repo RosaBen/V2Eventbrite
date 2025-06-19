@@ -1,38 +1,42 @@
-<%# <p>Avatar attaché ? : <%= @user.avatar.attached? %>
-
-<%# </p> %>
-<%# <p>Nom fichier avatar : <%= @user.avatar.blob.filename if @user.avatar.attached? %>
-<%# </p> %>
-
-
 <div class="container mt-4">
   <div class="card mx-auto" style="max-width: 600px;">
     <div class="mb-3 text-center">
-<%= image_tag 'default_avatar.png',
-  alt: @user.fullname || "Inconnu",
-  class: "img-fluid rounded-circle border border-2 border-primary",
-  style: "max-width: 150px;" %>
-
+      <%= image_tag 'default_avatar.png', alt: @user.fullname || "Inconnu", class: "img-fluid rounded-circle", style: "max-width: 150px;" %>
     </div>
 
     <div class="card-header d-flex justify-content-between align-items-center bg-primary text-white">
-      <h2 class="mb-0 mx-auto"><%= @user.fullname %></h2>
+      <h2><%= @user.fullname %></h2>
       <%= link_to '⬅️ Retour aux events', events_path, class: 'btn btn-light btn-sm ms-auto' %>
     </div>
 
     <div class="card-body text-center">
-
-      <p><strong>Email :</strong> <%= @user.email %></p>
       <p><strong>Bio :</strong> <%= @user.description.presence || "Aucune bio disponible" %></p>
+      <p><strong>Email :</strong> <%= @user.email %></p>
+    </div>
 
-      <hr>
-      <h4 class="mb-3">mes events</h4>
+    <div class="row g-2 mx-3 mb-3">
+      <div class="col-6 d-grid">
+        <%= link_to "✏️ Modifier mes Infos", "#userForm", class: "btn btn-outline-secondary", data: { bs_toggle: "collapse", bs_target: "#userForm" }, role: "button" %>
+      </div>
+      <div class="col-6 d-grid">
+        <%= link_to "📅 Mes Événements", "#eventsList", class: "btn btn-outline-primary", data: { bs_toggle: "collapse", bs_target: "#eventsList" }, role: "button" %>
+      </div>
+    </div>
+
+    <div class="collapse mx-3" id="userForm">
+      <% resource_name = :user %>
+      <% resource = @user %>
+      <%= render "devise/shared/edit_user", resource: resource, resource_name: resource_name %>
+    </div>
+    
+    <div class="collapse mx-3 mt-4" id="eventsList">
       <% if @user.events.any? %>
+        <h4 class="mb-3">📅 Mes événements (<%= @user.events.count %>)</h4>
         <%= render 'shared/events_list', events: @user.events %>
       <% else %>
-        <p class="text-muted">Pas d'evenements crées</p>
+        <p class="text-muted">Pas d'événements créés</p>
       <% end %>
-
     </div>
+
   </div>
 </div>

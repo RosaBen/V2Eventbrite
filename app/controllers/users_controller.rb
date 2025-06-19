@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
+  before_action :set_user
   def index
     @users =User.all
   end
 
   def show
-    @user = User.find(params[:id])
+    @resource = current_user
+
     @events = @user.events
-    @event = Event.new
+    @attendances = @user.attendances
   end
 
   def new
@@ -20,13 +22,23 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: "✅ Informations mises à jour avec succès."
+    else
+      flash.now[:alert] = "❌ Une erreur est survenue."
+      render :show
+    end
   end
 
   def destroy
   end
 
   private
+
+  def set_user
+    @user = current_user
+  end
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :description, :email, :password, :password_confirmation)
   end
 end

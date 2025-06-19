@@ -1,0 +1,54 @@
+<h2 class="mb-4 text-center">Modifier mes informations</h2>
+<%= render "devise/shared/user_error" %>
+<div class="container mt-5">
+  <!-- edit infos -->
+  <div class="card shadow mb-4">
+    <div class="card-header bg-primary text-white text-center">
+      <h4>📝 Modifier mes informations</h4>
+    </div>
+    <div class="card-body">
+      <%= form_with model: @user, url: user_path(@user), method: :patch, local: true do |f| %>
+        <%= render "devise/shared/form_user", f: f %>
+        <div class="d-flex justify-content-between align-items-center mt-4 ">
+          <%= link_to '⬅️ Retour au profil', user_path(current_user), class: 'btn btn-outline-secondary' %>
+          <%= f.submit "💾 Enregistrer les modifications", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <!-- edit password -->
+  <div class="text-center mb-3">
+    <%= link_to "🔒 Modifier mon mot de passe", "#passwordForm", class: "btn btn-outline-warning", data: { bs_toggle: "collapse" }, role: "button" %>
+  </div>
+  <div class="collapse" id="passwordForm">
+    <div class="card shadow">
+      <div class="card-header bg-warning text-dark text-center">
+        <h4>Changer mon mot de passe</h4>
+      </div>
+      <div class="card-body">
+        <% resource = @user %>
+        <% resource_name = :user %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= render "devise/shared/password", f: f %>
+          <div class="text-end mt-4">
+            <%= f.submit "🔒 Mettre à jour le mot de passe", class: "btn btn-warning" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<%# Delete account %>
+<h3 class="mt-4 text-danger">❌ Supprimer mon compte</h3>
+<div class="mb-3">
+  <%= button_to "🗑️ Supprimer mon compte", 
+                registration_path(resource_name), 
+                method: :delete,
+                data: { confirm: "⚠️ Es-tu sûr(e) de vouloir supprimer ton compte ? Cette action est irréversible." },
+                class: "btn btn-danger" %>
+</div>
+
