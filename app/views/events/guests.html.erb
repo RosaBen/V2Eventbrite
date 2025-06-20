@@ -1,0 +1,24 @@
+<h2>Liste des invités pour <%= @event.title %></h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @attendances.each do |attendance| %>
+      <tr>
+        <td><%= attendance.user.fullname %></td>
+        <td><%= attendance.user.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="mt-3">
+  <%= link_to 'Modifier l\'événement', edit_event_path(@event), class: "btn btn-primary" %>
+  <%= link_to 'Supprimer l\'événement', event_path(@event), method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class: "btn btn-danger" %>
+  <%= link_to 'Retour aux événements', events_path, class: "btn btn-secondary" %>
+</div>

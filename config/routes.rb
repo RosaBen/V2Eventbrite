@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   resources :users
   resources :events do
     resources :attendances
+    member do
+      get :guests
+    end
   end
+  
   post "checkout", to: "checkout#create"
   get 'payments/success', to: 'payments#success', as: 'payment_success'
 

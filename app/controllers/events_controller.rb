@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :guests]
+
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authorize_owner!, only: [:edit, :update, :destroy, :guests]
 
   def index
     @events = Event.includes(:user, :attendances).order(start_date: :desc)
@@ -69,7 +71,17 @@ class EventsController < ApplicationController
     end
   end
 
+  def guests
+    @attendances = @event.attendances.includes(:user)
+  end
+
   private
+
+  def authorize_owner!
+    unless @event.user == current_user
+      redirect_to events_path, alert: "Tu n'es pas autorisé à accéder à cette page."
+    end
+  end
 
   def set_event
     @event = Event.find(params[:id])

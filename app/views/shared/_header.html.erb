@@ -19,24 +19,36 @@
                         <li class="nav-item"><%= link_to "Mon profil",
                         user_path(current_user),
                         class: "nav-link text-white" %></li>
-                        <li class="nav-item"><%= link_to "Liste des evenements", 
+                        <li class="nav-item"><%= link_to "Tous les evenements", 
                         events_path, 
                         class: "nav-link text-white" %></li>
-                        <% else %>
-                        <li class="nav-item">
-                            <%= link_to "Se connecter", 
-                            new_user_session_path,
-                             class: "nav-link text-white" %>
-                        </li>
-                        <li class="nav-item">
-                            <%= link_to "S'inscrire", 
-                            new_user_registration_path, 
-                            class: "nav-link text-white" %>
-                        </li>
-                        <% end %>
-                        <li class="nav-item"><%= link_to "Accueil", root_path, class: "nav-link text-white" %></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="eventsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      liste des participants
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="eventsDropdown">
+            <% current_user.created_events.each do |event| %>
+              <li>
+                <%= link_to event.title, guests_event_path(event), class: "dropdown-item" %>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Se connecter", 
+            new_user_session_path,
+            class: "nav-link text-white" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "S'inscrire", 
+            new_user_registration_path, 
+            class: "nav-link text-white" %>
+          </li>
+        <% end %>
+        <li class="nav-item"><%= link_to "Accueil", root_path, class: "nav-link text-white" %></li>
+      </ul>
+      </div>
+      </div>
+      </nav>
   
