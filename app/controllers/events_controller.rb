@@ -1,10 +1,15 @@
 class EventsController < ApplicationController
+  before_action :set_event, only: [ :show, :edit, :update, :destroy ]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+
   def index
-    @events =Event.includes(:user).order(start_date: :asc)
+    @events = Event.includes(:user, :attendances).order(start_date: :desc)
   end
 
   def show
-    @event = Event.find(params[:id])
+    if params[:success] == "true" && current_user
+      Attendance.find_or_create_by(user: current_user, event: @event)
+    end
   end
 
   def new
@@ -12,46 +17,64 @@ class EventsController < ApplicationController
   end
 
   def create
-    # puts "Current user: #{current_user.inspect}"
-    @event = current_user.events.build(event_params)
+    @event = current_user.created_events.build(event_params)
 
-    if @event.save
-      flash[:notice] = "Evenement Créé!"
-      redirect_to event_path(@event)
-    else
-      puts @event.errors.full_messages
-      flash.now[:alert] = "Failed to create event."
-      render :new
+
+    respond_to do |format|
+      if @event.save
+        format.html {
+          flash[:notice] = "Événement créé !"
+          redirect_to event_path(@event)
+        }
+        format.json { render :show, status: :created, location: @event }
+      else
+        format.html {
+          flash.now[:alert] = "Échec de la création : #{@event.errors.full_messages.join(', ')}"
+
+          render :new
+        }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  def edit
-    @event = Event.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @event = Event.find(params[:id])
-
-    if @event.update(event_params)
-      flash[:notice] = "Evenement Mis à Jour!"
-      redirect_to event_path(@event)
-    else
-      flash.now[:alert] = "Evenement non ajouté."
-      render :edit
+    respond_to do |format|
+      if @event.update(event_params)
+        format.html {
+          flash[:notice] = "Événement mis à jour !"
+          redirect_to event_path(@event)
+        }
+        format.json { render :show, status: :ok, location: @event }
+      else
+        format.html {
+          flash.now[:alert] = "Échec de la mise à jour."
+          render :edit
+        }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def destroy
-    @event = Event.find(params[:id])
     @event.destroy
-    flash[:notice] = "Evenement Supprimé!"
-    redirect_to events_path
+    respond_to do |format|
+      format.html {
+        flash[:notice] = "Événement supprimé !"
+        redirect_to events_path
+      }
+      format.json { head :no_content }
+    end
   end
 
   private
-  # puts "PARAMS ----------"
-  # puts params.inspect
-  # puts "-----------------"
+
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
   def event_params
     params.require(:event).permit(:title, :description, :start_date, :duration, :price, :location)
   end

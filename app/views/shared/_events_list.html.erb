@@ -1,5 +1,5 @@
 <div>
-  <% @events.each do |event| %>
+  <% events.each do |event| %>
     <div class="card mb-4 shadow-sm">
         <div class="card-body">
             <h5 class="card-title text-dark"><%=event.title%></h5>
@@ -24,6 +24,8 @@
     TBC
   <% end %>
 </strong>
+<br>
+<p><strong>Participants :</strong> <%= pluralize(event.attendances.count, "participant") %></p>
 <br>
 💰 Tarif : <strong><%= event.price %> €</strong>
 <br>

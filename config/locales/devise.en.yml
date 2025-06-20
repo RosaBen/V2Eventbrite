@@ -65,14 +65,11 @@ en:
         other: "%{count} errors prohibited this %{resource} from being saved:"
 fr:
   activerecord:
-    models:
-      user: "Utilisateur"
-    attributes:
-      user:
-        first_name: "Prénom"
-        last_name: "Nom"
-        description: "Description"
-  errors:
-    messages:
-      blank: "ne peut pas être vide"
+    errors:
+      models:
+        event:
+          attributes:
+            user:
+              required: "doit être présent"
+
 

@@ -31,6 +31,9 @@
     TBC
   <% end %>
 </strong>
+<br>
+<p>Nombre de participants : <%= @event.attendances.count %></p>
+
 
                   <br>
                   🕒 Date de l'évènement : <%= french_date_format(@event) %>
@@ -39,15 +42,31 @@
 <br>
 ⌛ Durée : <%= @event.duration %> minutes
                 </p>
-                                <% if current_user == @event.user %>
+                  <% if current_user == @event.user %>
                   <div class="d-flex justify-content-start align-items-center mb-4" style="gap: 10px;">
                     <%= link_to "✏️ Modifier cet evenement", edit_event_path(@event), class: "btn btn-warning" %>
                     <%= button_to "🗑️ Supprimer", event_path(@event), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir le supprimer  ?" }, class: "btn btn-danger" %>
                   </div>
+                  <% else %>
+                  <%= render partial: 'attendances/shared/form', locals: { event: @event, attendance: Attendance.new } %>
                 <% end %>
             </div>
         </div>
     </div>
+</div>
+<div>
+  <% if user_signed_in? %>
+  <% if @event.users.include?(current_user) %>
+    <p class="text-success">✅ Tu es déjà inscrit(e) à cet événement.</p>
+  <% else %>
+    <%= render 'attendances/shared/form', event: @event, attendance: Attendance.new %>
+    <%= button_to "Acheter avec Stripe", checkout_path(event_id: @event.id), method: :post, data: { turbo: false } %>
+  <% end %>
+<% else %>
+  <p class="text-danger">🔒 Connecte-toi pour pouvoir t'inscrire.</p>
+  <%= link_to "Connexion", new_user_session_path, class: "btn btn-outline-primary" %>
+<% end %>
+
 </div>
 <div class="d-flex justify-content-around align-items-center mb-4" style="gap: 10px;">
   <%= link_to "← Retour à la liste", events_path, class: "btn btn-outline-secondary" %>

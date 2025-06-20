@@ -1,7 +1,7 @@
   class Event < ApplicationRecord
     belongs_to :user
     has_many :attendances, dependent: :destroy
-    has_many :participants, through: :attendances, source: :user
+    has_many :users, through: :attendances
 
     validates :start_date, presence: true
     validate  :start_date_not_in_the_past

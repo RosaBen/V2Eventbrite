@@ -15,11 +15,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_17_222443) do
   enable_extension "pg_catalog.plpgsql"
 
   create_table "attendances", force: :cascade do |t|
-    t.string "stripe_customer_id", null: false
     t.bigint "user_id", null: false
     t.bigint "event_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "stripe_customer_id"
     t.index ["event_id"], name: "index_attendances_on_event_id"
     t.index ["user_id"], name: "index_attendances_on_user_id"
   end

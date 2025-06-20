@@ -21,6 +21,9 @@
       <div class="col-6 d-grid">
         <%= link_to "📅 Mes Événements", "#eventsList", class: "btn btn-outline-primary", data: { bs_toggle: "collapse", bs_target: "#eventsList" }, role: "button" %>
       </div>
+        <div class="col-4 d-grid">
+    <%= link_to "👥 Mes Participations", "#attendancesList", class: "btn btn-outline-success", data: { bs_toggle: "collapse", bs_target: "#attendancesList" }, role: "button" %>
+  </div>
     </div>
 
     <div class="collapse mx-3" id="userForm">
@@ -29,14 +32,24 @@
       <%= render "devise/shared/edit_user", resource: resource, resource_name: resource_name %>
     </div>
     
-    <div class="collapse mx-3 mt-4" id="eventsList">
-      <% if @user.events.any? %>
-        <h4 class="mb-3">📅 Mes événements (<%= @user.events.count %>)</h4>
-        <%= render 'shared/events_list', events: @user.events %>
-      <% else %>
-        <p class="text-muted">Pas d'événements créés</p>
-      <% end %>
-    </div>
+<div class="collapse mx-3 mt-4" id="eventsList">
+  <% if @created_events.any? %>
+    <h4 class="mb-3">📅 Mes événements créés (<%= @created_events.count %>)</h4>
+    <%= render 'shared/events_list', events: @created_events %>
+  <% else %>
+    <p class="text-muted">Pas d'événements créés</p>
+  <% end %>
+</div>
+
+<div class="collapse mx-3 mt-4" id="attendancesList">
+  <% if @participated_events.any? %>
+    <h4 class="mb-3">👥 Mes participations (événements créés par d'autres) (<%= @participated_events.count %>)</h4>
+    <%= render 'shared/events_list', events: @attendances.map(&:event) %>
+  <% else %>
+    <p class="text-muted">Pas de participations enregistrées (hors événements créés par vous)</p>
+  <% end %>
+</div>
 
   </div>
 </div>
+

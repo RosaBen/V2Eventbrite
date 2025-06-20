@@ -68,3 +68,7 @@ gem "devise"
 gem "faker"
 
 gem "devise-i18n"
+
+gem "stripe"
+
+gem "table_print"

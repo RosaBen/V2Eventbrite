@@ -3,14 +3,11 @@ class UsersController < ApplicationController
   def index
     @users =User.all
   end
-
   def show
-    @resource = current_user
-
-    @events = @user.events
-    @attendances = @user.attendances
+    @created_events = @user.created_events.order(start_date: :desc)
+    @attendances = @user.attendances.where.not(stripe_customer_id: nil).includes(:event)
+    @participated_events = @attendances.map(&:event).reject { |event| event.user == @user }
   end
-
   def new
     @user = User.new
   end

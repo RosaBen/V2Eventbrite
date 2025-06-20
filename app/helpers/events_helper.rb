@@ -14,4 +14,8 @@ module EventsHelper
     "#{hours}h#{formated_minutes}"
        end
   end
+
+  def price_cents (price)
+    price = price * 100
+  end
 end
