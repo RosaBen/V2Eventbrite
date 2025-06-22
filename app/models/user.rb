@@ -9,7 +9,7 @@
     has_many :created_events, class_name: "Event", foreign_key: "user_id", dependent: :destroy
 
     validates :first_name, :last_name, :description, presence: true
-    validates :stripe_customer_id, uniqueness: true, allow_nil: true
+    after_create :send_welcome_email
 
 
 
@@ -19,5 +19,9 @@
 
   def fullname
     "#{first_name} #{last_name}".strip
+  end
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver_now
   end
   end
