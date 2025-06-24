@@ -4,4 +4,20 @@
  *= require home
  */
 
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Boogaloo', cursive;
+	text-decoration: none;
+	list-style: none;
+}
 
+ :root {
+  --move-header: 0;
+  --box-header-ht: 3rem;
+  /* --bg-color: #99d8d0; */
+  --content-bg-color: #eef0e6;
+  --font-color: #37444c; 
+  --content-header: #b7efcd;
+}

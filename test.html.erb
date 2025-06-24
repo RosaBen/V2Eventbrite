@@ -1,20 +1,16 @@
-<!--
-<div >
-  <div >
-    <div >
-      <h1 >Bienvenue sur notre page Evenmentiel de Stains</h1>
-      <p >Ici, vous trouverez tous les evenements de notre ville Stains 🕵️‍♀️</p>
-      <hr >
-      <h2 >Comment ça marche ?</h2>
-      <ol style="max-width: 600px;">
-        <li>Inscris-toi ou connecte-toi pour participer.</li> 
-        <li>Publie un événement que tu organises ou que tu souhaites partager.</li>
-        <li>Découvre les événements des autres et participe à ceux qui t'intéressent !</li>
-      </ol>
-      <%= link_to "Voir tous les evenments", events_path %>
+  <div class="container_home_main">
+    <div class="main_header_home">
+      <h3 >Comment ça marche ? 🤯</h3>
     </div>
+    <div class="box_home">
+        <ul>
+        <li>* Inscris-toi ou connecte-toi pour participer.</li> 
+        <li>* Publie un événement que tu organises ou que tu souhaites partager.</li>
+        <li>* Découvre les événements des autres et participe à ceux qui t'intéressent !</li>
+      </ul>
+    </div>
+      <%= link_to "Voir tous les evenements", events_path, class: "btn_home btn_home_1" %>
   </div>
-</div>
 
         <% events, message = fetch_nearest_events %>
     <% if events.any? %>
@@ -41,5 +37,3 @@
     <%= link_to "Voir tous les événements à venir", events_path%>
   </div>
 <% end %>
-
--->
