@@ -1,31 +1,24 @@
 /* navbar */
 
-.wrapper {
+.wrapper_navbar {
   position: fixed;
   top: 20px;
   right: 20px;
   z-index: 1000; 
 }
 
-.mainMenu{
+.mainMenu_navbar{
   width: 250px;
   display: block;
   border-radius: 10px;
   overflow: hidden;
 }
-.item{
+.item_navbar{
   border-top: 1px solid rgba(255,255,255,0.8);
   overflow: hidden;
 }
-.btn{
-  display: block;
-  padding: 15px 20px;
-  background-color: rgba(255,255,255,0.2);
-  color: #fff;
-  position: relative;
 
-}
-.btn:before{
+.btn_navbar:before{
   content: '';
   position: absolute;
   width: 0;
@@ -37,21 +30,18 @@
   z-index: 9;
   
 }
-.btn i {
-  margin-right: 10px;
-}
 
-.item form {
+.item_navbar form {
   margin: 0;
   padding: 0;
   display: block;
 }
 
-.item form .btn {
+.item_navbar form .btn_navbar {
   display: block;
   width: 100%;
   padding: 15px 20px;
-  background-color: #ff6f61;
+  background-color: rgba(255, 111, 97, 0.2);
   color: #fff;
   border: none;
   text-align: left;
@@ -60,7 +50,7 @@
   position: relative;
 }
 
-.item form .btn:before {
+.item_navbar form .btn_navbar:before {
   content: '';
   position: absolute;
   width: 0;
@@ -73,13 +63,13 @@
   z-index: 9;
 }
 
-.subMenu{
+.subMenu_navbar{
   background: #273057;
   overflow: hidden;
   transition: max-height 0.7s;
   max-height: 0;
 }
-.subMenu a{
+.subMenu_navbar a{
   display: block;
   padding: 15px 20px;
   color: #fff;
@@ -88,13 +78,13 @@
   position: relative;
   
 }
-.subMenu a:before{
+.subMenu_navbar a:before{
   content: '';
   opacity: 0;
   transition: opacity 0.3s;
 
 }
-.subMenu a:hover:before{
+.subMenu_navbar a:hover:before{
   content: '';
   position: absolute;
   height: 0;
@@ -107,13 +97,13 @@
   border-left: 11px solid #fcdc29;
   border-bottom: 24px solid transparent;
 }
-.subMenu a:after{
+.subMenu_navbar a:after{
   content: '';
   opacity: 0;
   transition: opacity 0.3s;
 
 }
-.subMenu a:hover:after{
+.subMenu_navbar a:hover:after{
   content: '';
   position: absolute;
   height: 0;
@@ -126,7 +116,7 @@
   border-right: 11px solid #fcdc29;
   border-bottom: 24px solid transparent;
 }
-.subMenu a:hover{
+.subMenu_navbar a:hover{
   background: #273057;
   background: -moz-linear-gradient(top, #273057 0%, #273057 50%, #394c7f 51%, #394c7f 100%);
   background: -webkit-linear-gradient(top, #273057 0%,#273057 50%,#394c7f 51%,#394c7f 100%);
@@ -135,10 +125,10 @@
   transition: all 0.3s;
   border-bottom: 1px solid #394c7f;
 }
-.subMenu a:last-child{
+.subMenu_navbar a:last-child{
   border:none;
 }
-.item:target .subMenu{
+.item_navbar:target .subMenu_navbar{
   max-height: 10em;
 }
 

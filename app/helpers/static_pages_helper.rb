@@ -36,7 +36,9 @@ module StaticPagesHelper
           content_tag(:h5, truncate(data[:title], length: 25), style: "font-weight: bold;") + tag(:hr, style: "border-top: 3px solid #ccc;") +
           content_tag(:p, truncate(data[:description], length: 100), style: "font-size: 14px; line-height: 1.5; padding-top: 10px;") +
           content_tag(:p, data[:date], style: "font-size: 12px; color: #666;") +
-          link_to("Lire", Rails.application.routes.url_helpers.event_path(data[:event]), style: "display: inline-block; margin-top: 10px; padding: 5px 10px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;")
+          if user_signed_in?
+            link_to("Lire", Rails.application.routes.url_helpers.event_path(data[:event]), style: "display: inline-block; margin-top: 10px; padding: 5px 10px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;")
+          end
       end
     end.join.html_safe
   end

@@ -59,6 +59,7 @@
           <li>* Publie un événement que tu organises ou que tu souhaites partager.</li>
           <li>* Découvre les événements des autres et participe à ceux qui t'intéressent !</li>
         </ul>
+        <% if user_signed_in? %>
         <button class="btn_home">
           <div class="button-outer">
             <div class="button-inner">
@@ -66,6 +67,7 @@
             </div>
           </div>
         </button>
+        <% end %>
       </div>
     </div>    
   </div>

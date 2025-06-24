@@ -1,34 +1,28 @@
 <nav>
-    <div class="wrapper">
-        <ul class="mainMenu">
-          <li class="item"><%= link_to "Accueil", root_path , class: "btn"%></li>
+    <div class="wrapper_navbar">
+        <ul class="mainMenu_navbar">
+          <li class="item_navbar"><%= link_to "Accueil", root_path , class: "btn_navbar"%></li>
             <% if user_signed_in? %>
-              <li class="item" id="account"><%= link_to "🧑 Mon profil", user_path(current_user), class: "btn" %>
+              <li class="item_navbar" id="account"><%= link_to "🧑 Mon profil", user_path(current_user), class: "btn_navbar" %>
               </li>
-              <li class="item" id="all_events"><%= link_to "🗞️ Tous les evenements", events_path, class: "btn" %></li>
-              <li class="item" id="my_events">
-                <a href="#my_events" class="btn">📅 Mes évènements</a>
-                <ul class="subMenu">
+              <li class="item_navbar" id="all_events"><%= link_to "🗞️ Tous les evenements", events_path, class: "btn_navbar" %></li>
+              <li class="item_navbar" id="my_events">
+                <a href="#my_events" class="btn_navbar">📅 Mes évènements</a>
+                <ul class="subMenu_navbar">
                   <% current_user.created_events.each do |event| %>
                     <li><%= link_to event.title, guests_event_path(event)%>
                     </li>
                   <% end %>
                 </ul>
               </li>
-              <li class="item"><%= button_to "Se déconnecter",destroy_user_session_path, 
-            method: :delete, data: { confirm: "Es-tu sûr(e) ?" } , class: "btn"%></li>
+              <li class="item_navbar"><%= button_to "Se déconnecter",destroy_user_session_path, 
+            method: :delete, data: { confirm: "Es-tu sûr(e) ?" } , class: "btn_navbar"%></li>
             <% else %>
-              <li class="item" id="connexion">
-                <a href="#connexion" class="btn"></i>Connexion</a>
-                <ul class="subMenu">
-                              <li>
-            <%= link_to "Se connecter", 
-            new_user_session_path%>
-          </li>
-                        <li>
-            <%= link_to "S'inscrire", 
-            new_user_registration_path %>
-          </li>
+              <li class="item_navbar" id="connexion">
+                <a href="#connexion" class="btn_navbar">Connexion</a>
+                <ul class="subMenu_navbar">
+              <li><%= link_to "Se connecter", new_user_session_path%></li>
+              <li><%= link_to "S'inscrire", new_user_registration_path %></li>
                 </ul>
             </li>
             <% end %>
