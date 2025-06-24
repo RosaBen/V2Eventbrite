@@ -72,21 +72,19 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :letter_opener_web
 config.action_mailer.perform_deliveries = true
-config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
 
-# Crée un compte sur https://mailtrap.io/
-# Va dans Inbox > SMTP Settings
-# Configure config/environments/development.rb :
+  # Crée un compte sur https://mailtrap.io/
+  # Va dans Inbox > SMTP Settings
+  # Configure config/environments/development.rb :
 
-# config.action_mailer.delivery_method = :smtp
-# config.action_mailer.smtp_settings = {
-#   user_name: 'xxx', # Copie depuis Mailtrap
-#   password: 'xxx',  # Copie depuis Mailtrap
-#   address: 'sandbox.smtp.mailtrap.io',
-#   domain: 'sandbox.mailtrap.io',
-#   port: 2525,
-#   authentication: :cram_md5
-# }
-
-
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   user_name: 'xxx', # Copie depuis Mailtrap
+  #   password: 'xxx',  # Copie depuis Mailtrap
+  #   address: 'sandbox.smtp.mailtrap.io',
+  #   domain: 'sandbox.mailtrap.io',
+  #   port: 2525,
+  #   authentication: :cram_md5
+  # }
 end

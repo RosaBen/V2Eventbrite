@@ -12,17 +12,18 @@ module StaticPagesHelper
         color: colors.sample,
         rotation: rotations.sample,
         # top et left avec un écart plus grand et un peu aléatoire
-        top: 50 + index * 80 + rand(-20..20),
-        left: 50 + index * 120 + rand(-30..30),
-        z: 10 - index
+        top: 100 + index * 80 + rand(-20..20),
+        left: 100 + index * 120 + rand(-30..30),
+        z: 5 - index
       }
     end
   end
 
   def render_post_its(events)
-    events_post_it(events).each_with_index.map do |data, i|
+    events_post_it(events).map do |data|
       content_tag(:div,
-        style: "width: 200px;
+        style: "width: 400px;
+        padding: 20px;
                 background-color: #{data[:color]};
                 transform: rotate(#{data[:rotation]}deg);
                 position: absolute;
@@ -32,10 +33,10 @@ module StaticPagesHelper
                 border: 1px solid #ccc;
                 border-radius: 10px;",
         class: "postit-card shadow p-3") do
-          content_tag(:h5, truncate(data[:title], length: 25), class: "fw-bold") +
-          content_tag(:p, truncate(data[:description], length: 100), class: "small") +
-          content_tag(:p, data[:date], class: "text-muted small") +
-          link_to("Lire", Rails.application.routes.url_helpers.event_path(data[:event]), class: "btn btn-sm btn-outline-dark")
+          content_tag(:h5, truncate(data[:title], length: 25), style: "font-weight: bold;") + tag(:hr, style: "border-top: 3px solid #ccc;") +
+          content_tag(:p, truncate(data[:description], length: 100), style: "font-size: 14px; line-height: 1.5; padding-top: 10px;") +
+          content_tag(:p, data[:date], style: "font-size: 12px; color: #666;") +
+          link_to("Lire", Rails.application.routes.url_helpers.event_path(data[:event]), style: "display: inline-block; margin-top: 10px; padding: 5px 10px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;")
       end
     end.join.html_safe
   end

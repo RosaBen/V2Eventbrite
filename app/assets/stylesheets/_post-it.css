@@ -1,0 +1,26 @@
+/* post-it */
+
+.post_it_wrapper {
+  position: relative; 
+}
+
+.postit-card {
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.postit-card.expanded {
+  transform: scale(1.3) rotate(0deg) !important;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  z-index: 100 !important;
+}
+
+.post-it_home {
+  width: 100%;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+

@@ -1,10 +1,10 @@
 class UserMailer < ApplicationMailer
-  default from: 'no-reply@monsite.fr'
+  default from: "no-reply@monsite.fr"
 
   def welcome(user)
     @user = user
-    @url  = 'http://localhost:3000/login'
-    mail(to: @user.email, subject: 'Bienvenue sur EventBrite !')
+    @url  = "http://localhost:3000/login"
+    mail(to: @user.email, subject: "Bienvenue sur EventBrite !")
   end
 
   def new_participant_email(attendance)
