@@ -7,5 +7,4 @@ class Attendance < ApplicationRecord
 def send_new_participant_email
   UserMailer.new_participant_email(self).deliver_now
 end
-
 end

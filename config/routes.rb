@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
-  
+
   post "checkout", to: "checkout#create"
-  get 'payments/success', to: 'payments#success', as: 'payment_success'
+  get "payments/success", to: "payments#success", as: "payment_success"
 
   root "static_pages#home"
 end

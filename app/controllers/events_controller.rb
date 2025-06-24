@@ -1,8 +1,8 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :guests]
+  before_action :set_event, only: [ :show, :edit, :update, :destroy, :guests ]
 
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :authorize_owner!, only: [:edit, :update, :destroy, :guests]
+  before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy ]
+  before_action :authorize_owner!, only: [ :edit, :update, :destroy, :guests ]
 
   def index
     @events = Event.includes(:user, :attendances).order(start_date: :desc)
