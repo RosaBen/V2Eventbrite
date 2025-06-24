@@ -1,14 +1,13 @@
 <nav>
     <div class="wrapper">
-      <h1><%= link_to "🗞️ Tous les evenements", events_path %></h1>
         <ul class="mainMenu">
           <li class="item"><%= link_to "Accueil", root_path , class: "btn"%></li>
             <% if user_signed_in? %>
-              <li class="item" id="account"><%= link_to "Mon profil", user_path(current_user), class: "btn" %>
+              <li class="item" id="account"><%= link_to "🧑 Mon profil", user_path(current_user), class: "btn" %>
               </li>
-            
+              <li class="item" id="all_events"><%= link_to "🗞️ Tous les evenements", events_path, class: "btn" %></li>
               <li class="item" id="my_events">
-                <a href="#my_events" class="btn">Mes évènements</a>
+                <a href="#my_events" class="btn">📅 Mes évènements</a>
                 <ul class="subMenu">
                   <% current_user.created_events.each do |event| %>
                     <li><%= link_to event.title, guests_event_path(event)%>
